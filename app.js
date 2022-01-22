@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
     age: req.body.age,
     consent: req.body.consent,
     gender: req.body.gender,
-  }
+  };
 
   // use regex to validate first name and is at least 2 characters
   if (!/^[a-zA-Z _]{2,}$/.test(data.firstname)) {
@@ -113,13 +113,16 @@ router.post('/register', (req, res) => {
     errors.push('Gender must be selected');
   }
 
-  
-
   // check if errors is empty
   if (errors.length > 0) {
     res.render('register', {
       pagename: 'register',
       errs: errors,
+    });
+  } else {
+    res.render('register', {
+      pagename: 'register',
+      success: 'You have successfully registered!',
     });
   }
 
