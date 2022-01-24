@@ -82,13 +82,15 @@ router.post('/register', (req, res) => {
 
   // use regex to check if age is in the correct age format
   if (!/^[0-9]{2}$/.test(req.body.age)) {
-    errors.push('Age must be 2 numbers');
+    errors.push('Age must be selected');
   }
 
   // use regex to check if bio is in the correct bio format
-  if (!/^[a-zA-Z0-9\s,'-]{2,}$/.test(req.body.bio)) {
-    errors.push('Bio must be at least 2 characters and only letters, numbers, spaces, commas, and hyphens');
+  if (!/^.{25,}$/.test(req.body.bio)) {
+    errors.push('Bio must be at least 25 characters.');
   }
+
+  
 
   // use regex to check if consent is in the correct consent format
   if (!/^[a-zA-Z]{3}$/.test(req.body.consent)) {
