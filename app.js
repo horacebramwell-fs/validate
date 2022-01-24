@@ -38,78 +38,65 @@ router.get('/contact', (req, res) => {
   });
 });
 
+
+// register route
 router.get('/register', (req, res) => {
   res.render('register', {
     pagename: 'register',
   });
 });
 
-// register route
 router.post('/register', (req, res) => {
-  console.log(req.body);
 
   let errors = [];
 
-  let data = {
-    firstname: req.body.firstname.trim(),
-    lastname: req.body.lastname.trim(),
-    address: req.body.address.trim(),
-    city: req.body.city.trim(),
-    state: req.body.state.trim(),
-    zip: req.body.zip.trim(),
-    bio: req.body.bio.trim(),
-    age: req.body.age,
-    consent: req.body.consent,
-    gender: req.body.gender,
-  };
-
   // use regex to validate first name and is at least 2 characters
-  if (!/^[a-zA-Z _]{2,}$/.test(data.firstname)) {
+  if (!/^[a-zA-Z _]{2,}$/.test(req.body.firstname)) {
     errors.push('First name must be at least 2 characters and only letters');
   }
 
   // use regex to validate last name and is at least 2 characters
-  if (!/^[a-zA-Z _]{2,}$/.test(data.lastname)) {
+  if (!/^[a-zA-Z _]{2,}$/.test(req.body.lastname)) {
     errors.push('Last name must be at least 2 characters and only letters');
   }
 
   // use regex to check if address is in the correct address format
-  if (!/^[a-zA-Z0-9\s,'-]{2,}$/.test(data.address)) {
+  if (!/^[a-zA-Z0-9\s,'-]{2,}$/.test(req.body.address)) {
     errors.push('Address must be at least 2 characters and only letters, numbers, spaces, commas, and hyphens');
   }
 
   // use regex to check if city is in the correct city format
-  if (!/^[a-zA-Z _]{2,}$/.test(data.city)) {
+  if (!/^[a-zA-Z _]{2,}$/.test(req.body.city)) {
     errors.push('City must be at least 2 characters and only letters');
   }
 
   // use regex to check if state is in the correct state format
-  if (!/^[a-zA-Z]{2,}$/.test(data.state)) {
+  if (!/^[a-zA-Z]{2,}$/.test(req.body.state)) {
     errors.push('State must be at least 2 characters and only letters');
   }
 
   // use regex to check if zip is in the correct zip format
-  if (!/^[0-9]{5}$/.test(data.zip)) {
+  if (!/^[0-9]{5}$/.test(req.body.zip)) {
     errors.push('Zip must be 5 numbers');
   }
 
   // use regex to check if age is in the correct age format
-  if (!/^[0-9]{2}$/.test(data.age)) {
+  if (!/^[0-9]{2}$/.test(req.body.age)) {
     errors.push('Age must be 2 numbers');
   }
 
   // use regex to check if bio is in the correct bio format
-  if (!/^[a-zA-Z0-9\s,'-]{2,}$/.test(data.bio)) {
+  if (!/^[a-zA-Z0-9\s,'-]{2,}$/.test(req.body.bio)) {
     errors.push('Bio must be at least 2 characters and only letters, numbers, spaces, commas, and hyphens');
   }
 
   // use regex to check if consent is in the correct consent format
-  if (!/^[a-zA-Z]{3}$/.test(data.consent)) {
+  if (!/^[a-zA-Z]{3}$/.test(req.body.consent)) {
     errors.push('Consent must be checked');
   }
 
   // use regex to check if gender is correct format
-  if (!/^[a-zA-Z]{4,6}$/.test(data.gender)) {
+  if (!/^[a-zA-Z]{4,6}$/.test(req.body.gender)) {
     errors.push('Gender must be selected');
   }
 
@@ -126,7 +113,6 @@ router.post('/register', (req, res) => {
     });
   }
 
-  console.log(errors);
 });
 
 // login route
